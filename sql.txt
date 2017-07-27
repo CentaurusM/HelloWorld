@@ -1,0 +1,139 @@
+SELECT instances.created_at AS instances_created_at, instances.updated_at AS instances_updated_at, instances.deleted_at AS instances_deleted_at, instances.deleted AS instances_deleted, instances.id AS 
+
+instances_id, instances.user_id AS instances_user_id, instances.project_id AS instances_project_id, instances.image_ref AS instances_image_ref, instances.kernel_id AS instances_kernel_id, 
+
+instances.ramdisk_id AS instances_ramdisk_id, instances.hostname AS instances_hostname, instances.launch_index AS instances_launch_index, instances.key_name AS instances_key_name, instances.key_data AS 
+
+instances_key_data, instances.power_state AS instances_power_state, instances.vm_state AS instances_vm_state, instances.task_state AS instances_task_state, instances.memory_mb AS instances_memory_mb, 
+
+instances.vcpus AS instances_vcpus, instances.root_gb AS instances_root_gb, instances.ephemeral_gb AS instances_ephemeral_gb, instances.ephemeral_key_uuid AS instances_ephemeral_key_uuid, instances.host AS 
+
+instances_host, instances.node AS instances_node, instances.instance_type_id AS instances_instance_type_id, instances.user_data AS instances_user_data, instances.reservation_id AS instances_reservation_id, 
+
+instances.launched_at AS instances_launched_at, instances.terminated_at AS instances_terminated_at, instances.availability_zone AS instances_availability_zone, instances.display_name AS 
+
+instances_display_name, instances.display_description AS instances_display_description, instances.launched_on AS instances_launched_on, instances.locked AS instances_locked, instances.locked_by AS 
+
+instances_locked_by, instances.os_type AS instances_os_type, instances.architecture AS instances_architecture, instances.vm_mode AS instances_vm_mode, instances.uuid AS instances_uuid, 
+
+instances.root_device_name AS instances_root_device_name, instances.default_ephemeral_device AS instances_default_ephemeral_device, instances.default_swap_device AS instances_default_swap_device, 
+
+instances.config_drive AS instances_config_drive, instances.access_ip_v4 AS instances_access_ip_v4, instances.access_ip_v6 AS instances_access_ip_v6, instances.auto_disk_config AS instances_auto_disk_config, 
+
+instances.progress AS instances_progress, instances.shutdown_terminate AS instances_shutdown_terminate, instances.disable_terminate AS instances_disable_terminate, instances.cell_name AS instances_cell_name, 
+
+instances.internal_id AS instances_internal_id, instances.cleaned AS instances_cleaned, instance_info_caches_1.created_at AS instance_info_caches_1_created_at, instance_info_caches_1.updated_at AS 
+
+instance_info_caches_1_updated_at, instance_info_caches_1.deleted_at AS instance_info_caches_1_deleted_at, instance_info_caches_1.deleted AS instance_info_caches_1_deleted, instance_info_caches_1.id AS 
+
+instance_info_caches_1_id, instance_info_caches_1.network_info AS instance_info_caches_1_network_info, instance_info_caches_1.instance_uuid AS instance_info_caches_1_instance_uuid, 
+
+security_groups_1.created_at AS security_groups_1_created_at, security_groups_1.updated_at AS security_groups_1_updated_at, security_groups_1.deleted_at AS security_groups_1_deleted_at, 
+
+security_groups_1.deleted AS security_groups_1_deleted, security_groups_1.id AS security_groups_1_id, security_groups_1.name AS security_groups_1_name, security_groups_1.description AS 
+
+security_groups_1_description, security_groups_1.user_id AS security_groups_1_user_id, security_groups_1.project_id AS security_groups_1_project_id
+FROM instances LEFT OUTER JOIN instance_info_caches AS instance_info_caches_1 ON instance_info_caches_1.instance_uuid = instances.uuid LEFT OUTER JOIN (security_group_instance_association AS 
+
+security_group_instance_association_1 INNER JOIN security_groups AS security_groups_1 ON security_groups_1.id = security_group_instance_association_1.security_group_id AND 
+
+security_group_instance_association_1.deleted = 0 AND security_groups_1.deleted = 0) ON security_group_instance_association_1.instance_uuid = instances.uuid AND instances.deleted = 0
+WHERE instances.deleted = 0 AND instances.host = 'ecs-f579'
+
+
+
+
+
+
+SELECT instances.hostname, instances.task_state, instances.uuid, instances.image_ref, instances.display_name, instance_extra.flavor, instances.availability_zone, instances.host, instances.project_id, 
+
+instances.user_id, instances.created_at, instances.power_state, instances.vm_state 
+FROM instances INNER JOIN instance_extra ON instances.uuid = instance_extra.instance_uuid 
+WHERE instances.project_id = '229d3660797542659a08d49e899add79'
+
+
+
+
+
+SELECT ports.tenant_id AS ports_tenant_id, ports.id AS ports_id, ports.name AS ports_name, ports.network_id AS ports_network_id, ports.mac_address AS ports_mac_address, ports.admin_state_up AS 
+
+ports_admin_state_up, ports.status AS ports_status, ports.device_id AS ports_device_id, ports.device_owner AS ports_device_owner, ports.dns_name AS ports_dns_name, ports.standard_attr_id AS 
+
+ports_standard_attr_id, ipallocations_1.port_id AS ipallocations_1_port_id, ipallocations_1.ip_address AS ipallocations_1_ip_address, ipallocations_1.subnet_id AS ipallocations_1_subnet_id, 
+
+ipallocations_1.network_id AS ipallocations_1_network_id, standardattributes_1.created_at AS standardattributes_1_created_at, standardattributes_1.updated_at AS standardattributes_1_updated_at, 
+
+standardattributes_1.id AS standardattributes_1_id, standardattributes_1.resource_type AS standardattributes_1_resource_type, standardattributes_1.description AS standardattributes_1_description, 
+
+tags_1.standard_attr_id AS tags_1_standard_attr_id, tags_1.tag AS tags_1_tag, ml2_dvr_port_bindings_1.port_id AS ml2_dvr_port_bindings_1_port_id, ml2_dvr_port_bindings_1.host AS ml2_dvr_port_bindings_1_host, 
+
+ml2_dvr_port_bindings_1.router_id AS ml2_dvr_port_bindings_1_router_id, ml2_dvr_port_bindings_1.vif_type AS ml2_dvr_port_bindings_1_vif_type, ml2_dvr_port_bindings_1.vif_details AS 
+
+ml2_dvr_port_bindings_1_vif_details, ml2_dvr_port_bindings_1.vnic_type AS ml2_dvr_port_bindings_1_vnic_type, ml2_dvr_port_bindings_1.profile AS ml2_dvr_port_bindings_1_profile, ml2_dvr_port_bindings_1.status 
+
+AS ml2_dvr_port_bindings_1_status, securitygroupportbindings_1.port_id AS securitygroupportbindings_1_port_id, securitygroupportbindings_1.security_group_id AS securitygroupportbindings_1_security_group_id, 
+
+portsecuritybindings_1.port_id AS portsecuritybindings_1_port_id, portsecuritybindings_1.port_security_enabled AS portsecuritybindings_1_port_security_enabled, ml2_port_bindings_1.port_id AS 
+
+ml2_port_bindings_1_port_id, ml2_port_bindings_1.host AS ml2_port_bindings_1_host, ml2_port_bindings_1.vnic_type AS ml2_port_bindings_1_vnic_type, ml2_port_bindings_1.profile AS ml2_port_bindings_1_profile, 
+
+ml2_port_bindings_1.vif_type AS ml2_port_bindings_1_vif_type, ml2_port_bindings_1.vif_details AS ml2_port_bindings_1_vif_details, extradhcpopts_1.id AS extradhcpopts_1_id, extradhcpopts_1.port_id AS 
+
+extradhcpopts_1_port_id, extradhcpopts_1.opt_name AS extradhcpopts_1_opt_name, extradhcpopts_1.opt_value AS extradhcpopts_1_opt_value, extradhcpopts_1.ip_version AS extradhcpopts_1_ip_version, 
+
+qos_port_policy_bindings_1.policy_id AS qos_port_policy_bindings_1_policy_id, qos_port_policy_bindings_1.port_id AS qos_port_policy_bindings_1_port_id, allowedaddresspairs_1.port_id AS 
+
+allowedaddresspairs_1_port_id, allowedaddresspairs_1.mac_address AS allowedaddresspairs_1_mac_address, allowedaddresspairs_1.ip_address AS allowedaddresspairs_1_ip_address 
+FROM ports LEFT OUTER JOIN ml2_port_bindings ON ports.id = ml2_port_bindings.port_id LEFT OUTER JOIN ipallocations AS ipallocations_1 ON ports.id = ipallocations_1.port_id LEFT OUTER JOIN standardattributes 
+
+AS standardattributes_1 ON standardattributes_1.id = ports.standard_attr_id LEFT OUTER JOIN tags AS tags_1 ON standardattributes_1.id = tags_1.standard_attr_id LEFT OUTER JOIN ml2_dvr_port_bindings AS 
+
+ml2_dvr_port_bindings_1 ON ports.id = ml2_dvr_port_bindings_1.port_id LEFT OUTER JOIN securitygroupportbindings AS securitygroupportbindings_1 ON ports.id = securitygroupportbindings_1.port_id LEFT OUTER 
+
+JOIN portsecuritybindings AS portsecuritybindings_1 ON ports.id = portsecuritybindings_1.port_id LEFT OUTER JOIN ml2_port_bindings AS ml2_port_bindings_1 ON ports.id = ml2_port_bindings_1.port_id LEFT OUTER 
+
+JOIN extradhcpopts AS extradhcpopts_1 ON ports.id = extradhcpopts_1.port_id LEFT OUTER JOIN qos_port_policy_bindings AS qos_port_policy_bindings_1 ON ports.id = qos_port_policy_bindings_1.port_id LEFT OUTER 
+
+JOIN allowedaddresspairs AS allowedaddresspairs_1 ON ports.id = allowedaddresspairs_1.port_id 
+WHERE ports.device_id IN ('99ddba32-f63a-4344-85a6-f2d972d85754', 'd75c3cf0-4631-46e4-8191-26871006320f', 'd6f4c4ef-9482-4659-9072-deeea41419d4', 'ca5e2908-1f3f-47cb-9418-aae92f32c90a', '4ce019dc-e7ee-4667-
+
+a223-5891b4302a0a', '15e094df-21e3-45f3-935d-e62dd97cd646', 'ee83ec6f-e348-47f0-9199-d559f9c2db23', 'd0f95adb-46b5-4c6f-acb0-c99af6ce6816', 'e09953c5-0d99-45e1-9013-cd1e4e908451', 'cf814556-351e-47ef-b836-
+
+5456edb40096', 'd56e30ac-9cbb-4f27-b094-276f9bdadf9e', 'e757c9ae-24b6-4a4e-b3e1-ca8747c949e6', 'e0864367-5ed2-4d9d-aae8-56d768f6a8e0', 'a55dd3bf-8351-4623-8482-a67f272747d1', 'e2adbe8f-570e-4330-ad06-
+
+0d088ffdd82b', '48202ac8-3fc2-474f-ad20-8b2b207c8be6', '82997652-065a-4673-b6bf-b97f5add9dd5', '2c289313-f777-42a2-a42c-cb1dad4d60ba', 'a124b130-d8b5-4f39-b7d7-dc71531023e2', '1b5db63d-58db-48ee-8be5-
+
+8a5861689b44', '28e0389c-e0c6-4e2d-b7b3-b64775b01d89', 'c4a75d75-19fe-45eb-a2d2-9e5f40fb4dee', 'b622db90-e427-4049-a0dd-81db56babd02', '6f242b46-2ded-43e3-a322-f387ab68137e', '20aa1ab5-0cc2-445c-b7d6-
+
+6a539923948a', 'afcd9417-2495-43ea-86bb-0088e5376b05', '647348b7-77e6-4914-b549-165560146a68', 'abdfc82d-96fe-4764-bf75-c03f373c6ac9', 'c62bc711-caa4-41cf-a6eb-57afd6794cb1', '41c619dd-2603-4cb1-a147-
+
+488bf06e73b5', '47f20f95-b375-45ff-b1e4-c007fac132d5', '4c28ef51-3e03-4706-a4f3-30f0cc984e9b', '23039a43-8550-4888-8259-3f60ecb76448', '18dcd46c-fc2c-47c5-a20e-5992d25d4a50', '688ed907-3d28-4938-898d-
+
+26fd98189f38', 'c9409c8a-4685-4f32-8e04-36c86d4356f0', 'ea688206-dd08-4075-a1cc-30993b355121', 'e649a95d-5dff-4c47-92ce-1002c27f0da2', '313b20be-d3fd-4640-880d-0a5e7d40478d', '586a47eb-4bf9-4e5c-b2c3-
+
+126fdc078150', '401a8808-3439-4c11-b23a-7cf94f9b8ebd', 'b38c0e7b-e2d6-443c-86a1-53c9dc124a71', 'd72a0510-a04a-4ffb-b65d-5421cc1ddc2b', '564c279a-a0aa-4ac9-833f-caee098db340', '4e97c0e2-f45a-4e20-a6ce-
+
+61e5b62e4b5d', 'afa538b8-b1b4-4466-9fcd-4429ef39e37a', '80d8bd89-7a95-4b42-9de7-3a761e12bbc2', '6179492d-5d90-4095-b29e-2ea2681e9146', '12064ca9-b4e7-4811-8981-b2e82cd0a71c', '03a8ae95-930a-4cc4-abaf-
+
+f3ceaabb64a3', 'a743ceed-a371-478a-98f3-7d4b1040f00c', '045f6b64-b6d9-49bf-b57f-531d126eaa4e', '0d341fd6-b53a-4f71-9373-a83386e67488', '202adbff-263d-414e-af77-f70e7fc4d0e5', 'c5e717b9-680a-41eb-a8bc-
+
+67bc4f39a53c', '5c524cf6-5471-45ed-a57e-fcad7b68707f', '8de4b56e-7d53-4c2d-bf23-ba10a4cda350', 'a6bdd621-d050-4799-b6f0-94b5eb852829', 'a0cd1b2e-6984-4533-83e8-195e9f8500cd', 'd8c0c5a5-6bdb-4169-a217-
+
+41734c9fcad0', 'abcd2bc2-5c73-463b-91b0-c0512496b5e9', '6faea8f0-6ea6-4fbe-ac53-3e64f10f1e81', 'd056380f-6164-4f66-a33f-073de25c21df', 'e4bfc6e9-9ae5-4a63-8feb-a1cadb0e6b8f', '6981e9f8-d3f8-439e-a327-
+
+5171bc9f48c9', '52faa3f5-1501-4708-91e6-0ec0a1fec590', 'd6103d01-7b88-4c81-961d-3bfac1085437', 'c8ebfff4-2b54-4352-8d64-de023ed7f9fc', '18ec69e0-6b26-4bff-9d73-e2d94c98b94c', '28b8e62c-cd28-435f-a082-
+
+06aa4eb73624', '3e4a81bc-9a4a-49b9-aafd-6ba2032a1a83', 'c0ffc65b-d72c-4cfa-a072-9869d63ed338', '425abf81-4181-45a3-8319-6f4c5d61a10b', 'd2ff857d-9061-4190-a1d8-a1bef29faa71', '254d22ff-8b85-4053-a86e-
+
+53da5df1cd60', 'd661f70a-342a-405f-a834-79b5722a385d', 'c6e62575-5862-45da-8fe9-50a6d2aebab6', '977a8ed8-0ec8-4ed2-b41a-b557ef53f3f4', '544960bf-c458-4890-a4cc-7706dba6662f', '313a59d6-3d2f-4f11-924f-
+
+9fa459457715', '487af46f-b7af-4af8-b80c-84383423bbb2', '74391cb5-4342-470a-b37e-9d5209451355', 'b64cea23-94b9-4004-91cf-a733282d6d32', '80e4aa99-1423-4a07-b8dd-61d068d06d77', '6b1b0567-3903-4d6d-85d3-
+
+eaff2586635c', '951cd3be-a640-4b66-b8d6-ef39dfbd7fbf', 'd9a29e95-7c02-42cb-a63b-a0317042ee3e', '9809fa62-22f3-4f0e-85a9-3e9e36e87fa7', '5bcea56c-d6e3-4144-873c-7397ca7327f9', 'cafd5430-161d-4080-89dc-
+
+47e0bf14e28d', '21b17424-8ca8-466d-9d09-ee14ebc529eb', 'cdda694e-1f1c-47de-b89a-e814b3d9a6e7', '6678bcfd-ee30-4436-9fb1-2baef94d8337', 'd9b09ea3-7f1f-446f-8a1c-91122ccdcf6d', '2b4e8c35-9d03-4a47-9938-
+
+de5603e27b2a', 'f6bd9fc0-2f29-4e52-8617-75e61aa9f6ff', '7e0b751e-d458-4c05-91cd-ef2cffb24932', '44634f6a-3901-4779-91ee-b072ab5404f4', 'a295b976-af4f-4adf-a487-0fcd14d8afd3', '88508975-676a-48d8-a1fb-
+
+3a6e69024b2b', 'da10da11-1dbf-4656-bd15-a5cb302c7760', '8a76fd16-d425-480b-9434-7a8335c6c37f', '8163b127-d9e0-4aa1-b432-fa3643d866bf')
+
