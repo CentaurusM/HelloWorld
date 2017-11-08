@@ -3,3 +3,11 @@ c:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccou
 
 c:[Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]
 => issue(Type = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", Issuer = c.Issuer, OriginalIssuer = c.OriginalIssuer, Value = c.Value, ValueType = c.ValueType, Properties["http://schemas.xmlsoap.org/ws/2005/05/identity/claimproperties/format"] = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient", Properties["http://schemas.xmlsoap.org/ws/2005/05/identity/claimproperties/spnamequalifier"] = "auth.fb.fcs.com");
+
+
+
+
+
+Add-PSSnapin Microsoft.Adfs.Powershell
+(Get-ADFSRelyingPartyTrust) | Set-ADFSRelyingPartyTrust  -EncryptionCertificateRevocationCheck None
+(Get-ADFSRelyingPartyTrust) | Set-ADFSRelyingPartyTrust  -SigningCertificateRevocationCheck None
