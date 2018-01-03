@@ -1,13 +1,1 @@
-c:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname", Issuer == "AD AUTHORITY"]
-=> add(store = "Active Directory", types = ("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"), query = ";sAMAccountName;{0}", param = c.Value);
-
-c:[Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]
-=> issue(Type = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", Issuer = c.Issuer, OriginalIssuer = c.OriginalIssuer, Value = c.Value, ValueType = c.ValueType, Properties["http://schemas.xmlsoap.org/ws/2005/05/identity/claimproperties/format"] = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient", Properties["http://schemas.xmlsoap.org/ws/2005/05/identity/claimproperties/spnamequalifier"] = "auth.fb.fcs.com");
-
-
-
-
-
-Add-PSSnapin Microsoft.Adfs.Powershell
-(Get-ADFSRelyingPartyTrust) | Set-ADFSRelyingPartyTrust  -EncryptionCertificateRevocationCheck None
-(Get-ADFSRelyingPartyTrust) | Set-ADFSRelyingPartyTrust  -SigningCertificateRevocationCheck None
+http://support.huawei.com/enterprise/zh/cloud-computing/fusionsphere-sia-pid-19916941/software/22844890/?idAbsPath=fixnode01%7C7919749%7C7919788%7C9856606%7C21462752%7C19916941
